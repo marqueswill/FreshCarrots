@@ -1,0 +1,32 @@
+.search_bar {
+  display: flex;
+  align-items:center ;
+  gap: 10px;
+}
+
+.search_box {
+  width: 400px;
+  height: 35px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  font-size: 16px;
+  font-family: RobotoSlab;
+
+  background: #f1f1f1;
+  stroke-width: 1px;
+  stroke: #000;
+  stroke: none;
+
+}
+
+.label {
+  font-size: 20px;
+  font-family: RobotoSlab;
+  color: #f1f1f1;
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
+  color: #f1f1f1;
+}

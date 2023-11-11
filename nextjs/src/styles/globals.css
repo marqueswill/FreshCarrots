@@ -1,0 +1,32 @@
+@font-face {
+  font-family: Roboto;
+  src: url("/fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+  font-family: RobotoSlab;
+  src: url("/fonts/RobotoSlab-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: Caveat;
+  src: url("/fonts/Caveat-Bold.ttf");
+}
+
+html {
+  background-color: #415d43;
+  font-family: RobotoSlab;
+}
+
+html,
+body {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  background: #415d43;
+}
+
+#parent {
+  width: 100vw;
+  overflow-x: hidden;
+}
