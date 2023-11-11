@@ -2,24 +2,30 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
-import { Book, BookShelf } from "./_app";
+import { Book, Category, BookShelf } from "@/types/types";
 import Carousel from "@/components/Carousel";
 
 const inter = Inter({ subsets: ["latin"] });
 
 let livro1: Book = {
+  isnb: "978-6555584059",
+  title: "Princípios de Sistemas de Informação",
+  author: "George W. Reynolds",
+  edition: 14,
+  year: 2021,
+  category: "Engenharias e Tecnologia",
+  grade: 3.5,
+  pages: 600,
+  url: "/bookpage ",
+  language: "Português-Brasil",
+  sinopse:
+    "Sinopse: Esta edição de Princípios de sistemas de informação oferece a cobertura tradicional de conceitos de informática, mas coloca o material no contexto de atender às necessidades de empresas e organizações. Colocar os conceitos de sistemas de informação neste contexto e assumir uma perspectiva de gestão sempre diferenciou este livro de outros de informática, tornando-o atraente não apenas para os alunos com especialização em sistema de informação de gestão, mas também para estudantes de outras áreas de estudo. O texto não é excessivamente técnico, mas trata do papel desempenhado pelos sistemas de informação em uma organização e os princípios-chave que um gestor ou especialista em tecnologia precisa saber para ser bem-sucedido.",
   thumbnail: "images/book.png",
-  category: "Engenharias e tecnologia",
 };
 
-let estante: BookShelf = {
-  category: "Engenharia e tecnologias",
+let categoria1: Category = {
+  name: "Engenharia e tecnologias",
   books: [
-    livro1,
-    livro1,
-    livro1,
-    livro1,
-    livro1,
     livro1,
     livro1,
     livro1,
@@ -33,17 +39,32 @@ let estante: BookShelf = {
   ],
 };
 
+let categoria2: Category = {
+  name: "Ciências Humanas",
+  books: [
+    livro1,
+    livro1,
+    livro1,
+    livro1,
+    livro1,
+    livro1,
+    livro1,
+    livro1,
+    livro1,
+    livro1,
+  ],
+};
+
+let estante: BookShelf = {
+  shelf: [categoria1, categoria2],
+};
+
 export default function Home() {
   return (
-    <>
-      <Head>
-        <title>FreshCarrots</title>
-      </Head>
-      <body>
-        <div id="parent" className={styles.main}>
-          <Carousel bookShelf={estante}/>
-        </div>
-      </body>
-    </>
+    <div className={styles.body}>
+      {estante.shelf.map((categoria) => (
+        <Carousel shelf={categoria} />
+      ))}
+    </div>
   );
 }

@@ -1,29 +1,24 @@
-.row {
-  width: 100%;
-  height: 350px;
-  background-color: #f1f1f1;
+.carousel{
+}
 
-  display: inline-flex;  
+.row {
+  width: 100%; 
+  height: 350px;
+  background-color: #FF822D;
+
+  display: flex;
   justify-content: center;
+  align-items: center;
   align-self: center;
 }
 
-.slick-prev {
-  left: 3% !important;
-  z-index: 1;
-}
-
-.slick-next {
-  right: 3% !important;
-  z-index: 1;
-}
-
 .slider {
-  width: 80%; 
-   /* height: fit-content; */
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
+  width: 80%;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .book_shelf {

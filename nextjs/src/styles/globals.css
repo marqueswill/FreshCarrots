@@ -18,15 +18,14 @@ html {
   font-family: RobotoSlab;
 }
 
-html,
 body {
   width: 100vw;
   margin: 0;
   padding: 0;
-  background: #415d43;
+  background: #fff1d7;
 }
 
-#parent {
+main {
   width: 100vw;
   overflow-x: hidden;
 }
