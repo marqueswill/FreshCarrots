@@ -11,6 +11,8 @@ class User(models.Model):
 class Book(models.Model):
     isbn = models.BigIntegerField(primary_key=True)
     title = models.CharField(max_length=100)
+    author = models.CharField(max_lenght=100)
+    language = models.CharField(max_lenght=45)
     edition = models.IntegerField()
     year = models.DateField()
     category = models.CharField(max_length=45)
