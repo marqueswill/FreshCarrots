@@ -1,4 +1,9 @@
-.bookpage {
+.bookpage{
+  display: flex;
+  flex-direction: column;
+}
+
+.book_section {
   width: 100%;
   display: flex;
   align-items: center;
@@ -18,7 +23,7 @@
   justify-content: space-between;
   gap: 50px;
 
-  border-radius: 75px;
+  border-radius: 50px;
   background: #fff;
 }
 
@@ -95,10 +100,17 @@
 
 .thumbnail {
   width: 80%;
+  border-radius: 25px;
   /* height: auto; */
   flex-shrink: 0;
 }
 
 .stars {
   width: 50%;
+}
+
+.avaliable_section{
+  display: flex;
+  align-self: center;
+  align-items: center;
 }

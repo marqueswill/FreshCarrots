@@ -20,7 +20,7 @@ export default function Footer() {
             <Link href="">
               <img
                 className={styles.social_media_icon}
-                src="images/icons/instragram_icon.png"
+                src="/images/icons/instagram.png"
                 alt=""
               />
             </Link>
@@ -29,7 +29,7 @@ export default function Footer() {
             <Link href="">
               <img
                 className={styles.social_media_icon}
-                src="images/icons/facebook_icon.png"
+                src="/images/icons/facebook.png"
                 alt=""
               />
             </Link>
@@ -38,7 +38,7 @@ export default function Footer() {
             <Link href="">
               <img
                 className={styles.social_media_icon}
-                src="images/icons/whatsapp_icon.png"
+                src="/images/icons/whatsapp.png"
                 alt=""
               />
             </Link>

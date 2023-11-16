@@ -6,7 +6,7 @@ export default function SearchBar() {
   return (
     <div className={styles.search_bar}>
       <div>
-        <img src="images/icons/lupa.svg" className={styles.icon} />
+        <img src="/images/icons/lupa.svg" className={styles.icon} />
       </div>
       <div>
         {/* <label htmlFor="" className={styles.label}>Pesquisar:</label> */}

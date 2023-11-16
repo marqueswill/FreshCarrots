@@ -1,6 +1,7 @@
 export type UserBook = {
   user_id: number;
-  info: Book;
+  id: number;
+  book: Book;
   avaliability: Map<string, boolean>;
   condition: string;
   place: string;
@@ -9,7 +10,7 @@ export type UserBook = {
 };
 
 export type Book = {
-  isnb: string;
+  isnb: number;
   title: string;
   author: string;
   edition: number;
@@ -34,6 +35,10 @@ export type BookShelf = {
 
 export type User = {
   name: string;
+  email: string;
+  course?: string;
+  college?: string;
   title: string;
   image: string;
+  score: number;
 };

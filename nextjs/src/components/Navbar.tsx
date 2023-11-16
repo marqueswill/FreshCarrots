@@ -2,6 +2,7 @@ import styles from "@/styles/Navbar.module.css";
 import Link from "next/link";
 import { useState } from "react";
 import SearchBar from "./SearchBar";
+import Notification from "./Notification";
 
 export default function Navbar() {
   const [loginButton, setLoginButton] = useState(false);
@@ -12,7 +13,7 @@ export default function Navbar() {
       <div className={styles.logo_div}>
         <Link href="/">
           <img
-            src="images/logomark.png"
+            src="/images/logomark.png"
             alt="freshcarrots"
             className={styles.logomark}
           />
@@ -31,42 +32,21 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <SearchBar/>
+            <SearchBar />
           </li>
           <li>
-            {!notification && (
-              <span>
-                <Link href="" className={styles.link}>
-                  <img
-                    src="images/icons/notification_icon_false.png"
-                    alt=""
-                    className={styles.notification_icon}
-                  />{" "}
-                </Link>
-              </span>
-            )}
-            {notification && (
-              <span>
-                <Link href="" className={styles.link}>
-                  <img
-                    src="images/icons/notification_icon_true.png"
-                    alt=""
-                    className={styles.notification_icon}
-                  />{" "}
-                </Link>
-              </span>
-            )}  
+            <Notification state={notification} />
           </li>
           <li>
             {!loginButton && (
               <span>
-                <Link href="/login" className={styles.link}>
+                {/* <Link href="/login" className={styles.link}> */}
                   <img
-                    src="images/icons/user_login.png"
+                    src="/images/icons/user_login.png"
                     alt=""
                     className={styles.user_icon}
                   />{" "}
-                </Link>
+                {/* </Link> */}
               </span>
             )}
             {loginButton && (

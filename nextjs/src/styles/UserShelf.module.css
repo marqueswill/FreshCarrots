@@ -1,0 +1,58 @@
+.carousel {
+  width: 920px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  /* align-items: flex-start; */
+}
+
+.row {
+  width: 100%;
+  padding: 20px;
+  height: fit-content;
+  border-radius: 40px;
+  background-color: #ff822d;
+
+  display: inline-flexbox;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider {
+  /* padding: 25px; */
+  width: auto;
+  height: auto;
+
+  display: inline-flexbox;
+  align-items: center;
+  justify-content: center;
+}
+
+.book_shelf {
+  width: 100%;
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+}
+
+.category {
+  color: #f1f1f1;
+  font-size: 32px;
+}
+
+.thumbnail {
+  width: 200px;
+  height: 250px;
+  margin: 0;
+  flex-shrink: 0;
+  border-radius: 20px;
+}
+
+.link {
+  width: fit-content;
+}
+
+.book_slide{
+  display: flex;
+  flex-direction: row;
+}
