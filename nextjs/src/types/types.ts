@@ -1,6 +1,6 @@
 export type UserBook = {
-  user_id: number;
   id: number;
+  user: User;
   book: Book;
   avaliability: Map<string, boolean>;
   condition: string;
@@ -41,4 +41,15 @@ export type User = {
   title: string;
   image: string;
   score: number;
+};
+
+export type BookRequest = {
+  id: number;
+  type: string;
+  time: number;
+  start: string;
+  end: string;
+  lenderBook: UserBook;
+  lender: User;
+  borrower: User;
 };

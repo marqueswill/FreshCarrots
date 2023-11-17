@@ -76,6 +76,7 @@
 .info {
   width: 60%;
 
+  margin:20px;
   display: flex;
   align-self: flex-start;
   flex-direction: column;
@@ -99,7 +100,7 @@
 }
 
 .thumbnail {
-  width: 80%;
+  width: 65%;
   border-radius: 25px;
   /* height: auto; */
   flex-shrink: 0;

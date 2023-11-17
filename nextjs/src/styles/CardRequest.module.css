@@ -29,6 +29,7 @@
 .book_div {
   width: 600px;
   display: flex;
+  /* justify-content: center; */
 
   border-radius: 25px 0px 0px 25px;
   padding: 25px;
@@ -36,12 +37,16 @@
 }
 
 .book_info {
-  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 20px;
+  gap: 20px;
 }
 
 .book_title {
   margin: 0;
-  color: #000;
+
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -50,7 +55,7 @@
 
 .book_author {
   margin: 0;
-  color: #000;
+
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -90,6 +95,7 @@
 .user_icon {
   width: 100px;
   height: 100px;
+  border-radius: 50px;
 }
 
 .score {
@@ -108,7 +114,7 @@
 
 .user_name {
   margin: 0;
-  color: #000;
+
   font-size: 24px;
   font-style: normal;
   font-weight: 800;
@@ -117,15 +123,39 @@
 
 .user_title {
   margin: 0;
-  color: #000;
-  font-size: 16px;
+
+  font-size: 18px;
   font-style: italic;
   font-weight: 400;
   line-height: normal;
 }
 
-.table_cell {
-  width: 50%;
+.info_label {
+  margin: 0;
+  padding-left: 0;
+
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+
+  list-style: none;
+}
+
+.info_data {
+  margin: 0;
+
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  list-style: none;
+}
+
+.listas {
+  display: flex;
+  justify-content: flex-start;
 }
 
 .actions {
@@ -137,41 +167,43 @@
 .button_true {
   display: flex;
   margin: 0;
-  width: 100px;
-  height: fit-content;
-  padding: 4px 29px;
+  width: 150px;
+  height: 35px;
+  padding: 2px;
+
   justify-content: center;
   align-items: center;
-  gap: 10px;
   border-radius: 50px;
   background: #ff822d;
+  border: transparent;
 
   text-decoration: none;
-  color: #000;
   text-align: center;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
-  line-height: normal;
+  line-height: 30px;
+
+  cursor: pointer;
 }
 
 .button_false {
   display: flex;
   margin: 0;
-  width: 100px;
-  height: fit-content;
-  padding: 4px 29px;
+  width: 150px;
+  height: 35px;
+  padding: 4px;
+
   justify-content: center;
   align-items: center;
-  gap: 10px;
   border-radius: 50px;
   background: #bdbcbb;
+  border: transparent;
 
   text-decoration: none;
-  color: #000;
   text-align: center;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
-  line-height: normal;
+  line-height: 30px;
 }

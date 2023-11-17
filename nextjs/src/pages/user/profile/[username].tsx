@@ -35,7 +35,7 @@ export default function UserPage() {
   let userBook: UserBook = {
     id: 1,
     book: book,
-    user_id: 0,
+    user: user,
     avaliability: new Map([
       ["borrow", false],
       ["trade", true],

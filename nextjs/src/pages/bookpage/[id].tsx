@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Book, User, UserBook } from "@/types/types";
 import styles from "@/styles/BookPage.module.css";
-import Card from "@/components/Card";
+import CardRequest from "@/components/CardRequest";
 
 let user: User = {
   name: "José da Silva",
@@ -30,7 +30,7 @@ let book: Book = {
 let userBook: UserBook = {
   id: 1,
   book: book,
-  user_id: 0,
+  user: user,
   avaliability: new Map([
     ["borrow", false],
     ["trade", true],
@@ -118,7 +118,7 @@ export default function BookPage() {
         </div>
       </section>
       <section className={styles.avaliable_section}>
-        <Card user={user} userBook={userBook} />
+        <CardRequest user={user} userBook={userBook} />
       </section>
     </div>
   );

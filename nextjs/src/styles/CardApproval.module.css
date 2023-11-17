@@ -1,0 +1,167 @@
+.card {
+  width: 1350px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25px;
+  padding: 15px;
+  border-radius: 50px;
+  background: #fff;
+}
+
+.cover_div {
+  /* width: 40%; */
+  display: flex;
+  align-items: center;
+}
+
+.info_div {
+  width: 50%;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.book_div {
+  width: 40%;
+  height: 175px;
+  display: flex;
+  justify-content: space-around;
+
+  padding: 15px;
+}
+
+.book_info {
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  gap: 10px;
+}
+
+.book_title {
+  margin: 0;
+  color: #000;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.book_author {
+  margin: 0;
+  color: #000;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.user_div {
+  height: 175px;
+  width: 40%;
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 25px;
+}
+
+.user_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user_info_text {
+  display: flex;
+  flex-direction: column;
+}
+
+.user_icon {
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+  align-self: center;
+}
+
+.score {
+  display: flex;
+  align-items: center;
+}
+
+.score_icon {
+  height: 50px;
+  width: 50px;
+}
+
+.score_value {
+  margin: 0;
+  font-size: 20px;
+  color: #000;
+  font-weight: 700;
+}
+
+.user_name {
+  margin: 0;
+  color: #000;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+
+.user_title {
+  margin: 0;
+  color: #000;
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.info_label {
+  margin: 0;
+  color: #000;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+
+  list-style: none;
+}
+
+.info_data {
+  margin: 0;
+  color: #000;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  list-style: none;
+}
+
+.actions {
+  width: 20%;
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  /* stroke-width: 10px; */
+
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
