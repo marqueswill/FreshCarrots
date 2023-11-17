@@ -1,6 +1,7 @@
 import CardApproval from "@/components/CardApproval";
 import { User, Book, UserBook, BookRequest } from "@/types/types";
 import styles from "@/styles/UserShelf.module.css";
+import ShowUserBook from "@/components/ShowUserBook";
 
 export default function Shelf() {
   const user1: User = {
@@ -64,65 +65,10 @@ export default function Shelf() {
     borrower: user2,
   };
 
-  const getAvailability = (availability: Map<string, boolean>) => {
-    if (Array.from(availability.values()).every((value) => value === true)) {
-      return "Empréstimo ou Troca";
-    } else if (availability.get("trade")) {
-      return "Troca";
-    } else if (availability.get("borrow")) {
-      return "Empréstimo";
-    } else {
-      return "Indisponível";
-    }
-  };
   return (
     <div className={styles.page}>
-      <section className={styles.book_div}>
-        <div className={styles.book_images}>
-          <img src="/images/book.png" className={styles.book_thumbnail} />
-          <img src="/images/star_example.png" className={styles.avaliation} />
-        </div>
-        <div className={styles.book_info}>
-          <ul className={styles.info_label}>
-            <li>Título:</li>
-            <li>Autor:</li>
-            <li>Edição</li>
-            <li>Ano:</li>
-            <li>Nº de páginas:</li>
-            <li>Idioma:</li>
-            <li>ISBN:</li>
-            <li>Categoria:</li>
-            <li>
-              <br />
-            </li>
-            <li>Local:</li>
-            <li>Estado físico:</li>
-            <li>Disponibilidade:</li>
-            <li>Status:</li>
-          </ul>
-          <br />
-          <ul className={styles.info_data}>
-            <li>{userBook.book.title} </li>
-            <li>{userBook.book.author} </li>
-            <li>{userBook.book.edition}ª edição</li>
-            <li>{userBook.book.year}</li>
-            <li>{userBook.book.pages} páginas</li>
-            <li>{userBook.book.language}</li>
-            <li>{userBook.book.isnb}</li>
-            <li>{userBook.book.category} </li>
-            <li>
-              <br />
-            </li>
-            <li>{userBook.place} </li>
-            <li>{userBook.condition}</li>
-            <li>{getAvailability(userBook.avaliability)}</li>
-            <li>{userBook.status}</li>
-          </ul>
-        </div>
-      </section>
-      <section>
-        <CardApproval bookRequest={bookRequest} />
-      </section>
+      <ShowUserBook userBook={userBook} />
+      <CardApproval bookRequest={bookRequest} />
     </div>
   );
 }
