@@ -19,7 +19,7 @@ class Book(models.Model):
     year = models.DateField()
     category = models.CharField(max_length=45)
     thumbnail = models.BinaryField(null=True)
-    grade = models.IntegerField()
+    grade = models.IntegerField(null=True)
     def __str__(self):
         return str(self.isbn, self.title)
     
