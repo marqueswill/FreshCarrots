@@ -1,0 +1,88 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.info_section {
+  width: 1350px;
+  margin: 25px;
+  padding: 25px;
+  border-radius: 50px;
+  background: #fff;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  padding-right: 10px;
+}
+
+.h1 {
+  color: #000;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+}
+
+.book_thumbnail {
+  width: 300px;
+  height: 400px;
+  margin: 0;
+  flex-shrink: 0;
+  border-radius: 20px;
+}
+
+.book_div {
+  width: 1350px;
+  background: #fff;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.book_images {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.book_info {
+  width: 70%;
+  display: flex;
+  font-size: 24px;
+}
+
+.info_label {
+  font-weight: bold;
+  width: 30%;
+  list-style: none;
+}
+
+.info_data {
+  width: 70%;
+  list-style: none;
+}
+
+.avaliation {
+  width: 200px;
+}
+.link {
+  width: fit-content;
+}
+
+.book_slide {
+  display: flex;
+  flex-direction: row;
+}

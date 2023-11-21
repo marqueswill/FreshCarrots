@@ -1,0 +1,40 @@
+.carousel{
+}
+
+.row {
+  width: 100%; 
+  height: 350px;
+  background-color: #FF822D;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+.slider {
+  width: 80%;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book_shelf {
+  width: 100%;
+  display: flex;
+  /* align-items: center; */
+  /* justify-content: center; */
+}
+
+.category {
+  font-size: 32px;
+}
+
+.thumbnail {
+  width: 198px;
+  height: 275px;
+  margin: 0;
+  flex-shrink: 0;
+}
