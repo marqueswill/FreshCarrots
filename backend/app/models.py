@@ -4,7 +4,7 @@ from django.db import models
 from django.db import models
 
 class User(models.Model):
-    cpf = models.BigIntegerField(primary_key=True)
+    cpf = models.CharField(max_length=11, primary_key=True)
     name = models.CharField(max_length=255, default=None)
     email = models.EmailField(default=None)
     phoneNumber = models.CharField(max_length=20, default=None)
