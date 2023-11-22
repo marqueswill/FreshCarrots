@@ -1,56 +1,65 @@
 from django.db import models
 
 
+from django.db import models
+
 class User(models.Model):
     cpf = models.BigIntegerField(primary_key=True)
-    name = models.CharField(max_length=100)
-    email = models.EmailField()
-    phoneNumber = models.CharField(max_length= 45)
-    password = models.CharField(max_length=45)
+    name = models.CharField(max_length=255, default=None)
+    email = models.EmailField(default=None)
+    phoneNumber = models.CharField(max_length=20, default=None)
+    password = models.CharField(max_length=255, default=None)
+    
     def __str__(self):
-        return str(self.cpf, self.nome, self.email, self.phoneNuber)
+        return "{} - {} - {} - {}".format(self.cpf, self.name, self.email, self.phoneNumber)
 
 class Book(models.Model):
     isbn = models.BigIntegerField(primary_key=True)
-    title = models.CharField(max_length=100)
-    author = models.CharField(max_lenght=100)
-    language = models.CharField(max_lenght=45)
+    title = models.CharField(max_length=255)
+    author = models.CharField(max_length=255)
+    language = models.CharField(max_length=50)
     edition = models.IntegerField()
     year = models.DateField()
-    category = models.CharField(max_length=45)
+    category = models.CharField(max_length=100)
     thumbnail = models.BinaryField(null=True)
     grade = models.IntegerField(null=True)
-    def __str__(self):
-        return str(self.isbn, self.title)
     
-class userBook(models.Model):
+    def __str__(self):
+        return "{} - {}".format(self.isbn, self.title)
+
+class UserBook(models.Model):
     id = models.BigIntegerField(primary_key=True)
     isbn = models.BigIntegerField()
     cpf = models.BigIntegerField()
-    availability = models.CharField(max_length=45)
+    availability = models.CharField(max_length=20)
+    
     def __str__(self):
-        return str(self.id, self.cpf, self.isbn)
+        return "{} - {} - {}".format(self.id, self.cpf, self.isbn)
 
 class Loan(models.Model):
     idLoan = models.IntegerField(primary_key=True)
-    time = models.models.IntegerField()
+    time = models.IntegerField()
     start = models.DateField()
     end = models.DateField()
-    state = models.CharField()
-    lender = models.ForeignKey(User, related_name='loan_lender')
-    borrower = models.ForeignKey(User, related_name='loan_borrower')
-    bookIsbn = models.ForeignKey(Book, related_name='loan_book_isnb')
+    state = models.CharField(max_length=50)
+    lender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='loans_as_lender')
+    borrower = models.ForeignKey(User, on_delete=models.CASCADE, related_name='loans_as_borrower')
+    bookIsbn = models.ForeignKey(Book, on_delete=models.CASCADE)
+    
     def __str__(self):
         return str(self.idLoan)
 
 class Review(models.Model):
     idReview = models.IntegerField(primary_key=True)
-    userCpf = models.ForeignKey(User, related_name='review_user')
-    bookIsbn = models.ForeignKey(Book, related_name='review_book')
+    userCpf = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')
+    bookIsbn = models.ForeignKey(Book, on_delete=models.CASCADE)
     grade = models.IntegerField()
-    coment = models.TextField() 
+    comment = models.TextField()
+    
     def __str__(self):
-        return str(self.idReview, self.userCpf, self.bookIsbn)
+        return "{} - {} - {}".format(self.idReview, self.userCpf, self.bookIsbn)
 
+
+    
 
 
