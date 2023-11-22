@@ -10,7 +10,7 @@ export type UserBook = {
 };
 
 export type Book = {
-  isnb: number;
+  isnb: string;
   title: string;
   author: string;
   edition: number;

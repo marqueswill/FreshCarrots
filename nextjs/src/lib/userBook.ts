@@ -9,3 +9,4 @@ export function getAvailability(availability: Map<string, boolean>) {
     return "Indisponível";
   }
 }
+
