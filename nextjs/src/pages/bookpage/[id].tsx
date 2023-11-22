@@ -8,11 +8,11 @@ let user: User = {
   title: "Bookwork",
   image: "/images/user_icon.png",
   score: 100,
-  email: "email@gmail.com"
+  email: "email@gmail.com",
 };
 
 let book: Book = {
-  isnb: 9786555584059,
+  isnb: "978-6555584059",
   title: "Princípios de Sistemas de Informação",
   author: "George W. Reynolds",
   edition: 14,
@@ -65,6 +65,8 @@ export default function BookPage() {
                 <h3 className={styles.author}>{book.author}</h3>
               </div>
               <table>
+                <tbody>
+                  {" "}
                   <tr>
                     <td>
                       <b>Edição:</b>
@@ -95,6 +97,7 @@ export default function BookPage() {
                     </td>
                     <td>{book.category}</td>
                   </tr>
+                </tbody>
               </table>
               <p className={styles.sinopse}>
                 <b>Sinopse:</b> {book.sinopse}

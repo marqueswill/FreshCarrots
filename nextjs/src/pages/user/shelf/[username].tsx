@@ -25,7 +25,7 @@ export default function Shelf() {
   };
 
   let book: Book = {
-    isnb: 9786555584059,
+    isnb: "978-6555584059",
     title: "Princípios de Sistemas de Informação",
     author: "George W. Reynolds",
     edition: 14,

@@ -1,5 +1,5 @@
 import { UserBook } from "@/types/types";
-import styles from "@/styles/UserShelf.module.css";
+import styles from "@/styles/ShowUserBook.module.css";
 import { getAvailability } from "@/lib/userBook";
 
 export default function ShowUserBook({ userBook }: { userBook: UserBook }) {

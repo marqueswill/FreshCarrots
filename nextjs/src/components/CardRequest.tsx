@@ -1,13 +1,33 @@
 import {} from "@/pages/_app";
 import styles from "@/styles/CardRequest.module.css";
 import { User, UserBook } from "@/types/types";
+import Link from "next/link";
 
-function Button({ text, enable = false }: { text: string; enable?: boolean }) {
+function Button({
+  children,
+
+  enable = false,
+  isbn,
+}: {
+  children: React.ReactNode;
+  enable?: boolean;
+  isbn?: number;
+}) {
   if (enable != undefined) {
     if (enable) {
-      return <button className={styles.button_true}>{text}</button>;
+      return (
+        // <Link href={`/request/${isbn}`}>
+        <button
+          className={styles.button_true}
+          onClick={() => {
+            window.location.href = `/request/${isbn}`;
+          }}
+        >
+          {children}
+        </button>
+      );
     } else {
-      return <button className={styles.button_false}>{text}</button>;
+      return <button className={styles.button_false}>{children}</button>;
     }
   }
 }
@@ -76,13 +96,17 @@ export default function Card(props: { userBook: UserBook; user: User }) {
         </div>
         <div className={styles.actions}>
           <Button
-            text="Empréstimo"
             enable={props.userBook.avaliability.get("borrow")}
-          />
+            isbn={props.userBook.id}
+          >
+            Empréstimo
+          </Button>
           <Button
-            text="Troca"
             enable={props.userBook.avaliability.get("trade")}
-          />
+            isbn={props.userBook.id}
+          >
+            Troca
+          </Button>
         </div>
       </div>
     </div>
