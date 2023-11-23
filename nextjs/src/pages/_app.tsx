@@ -1,15 +1,22 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import Provider from "@/components/provider";
 import "@/styles/globals.css";
-// import styles from "@/styles/App.module.css";
 import type { AppProps } from "next/app";
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
   return (
     <>
-      <Navbar />
-      <Component {...pageProps} />
-      <Footer />
+      <Provider>
+        <div>
+          <Navbar />
+          <Component {...pageProps} />
+          <Footer />
+        </div>
+      </Provider>
     </>
   );
 }

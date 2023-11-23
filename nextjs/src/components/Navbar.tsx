@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useState } from "react";
 import SearchBar from "./SearchBar";
 import Notification from "./Notification";
+import SigninButton from "./SigninButton";
+import SignInButton from "./SigninButton";
 
 export default function Navbar() {
   const [loginButton, setLoginButton] = useState(false);
@@ -38,24 +40,27 @@ export default function Navbar() {
             <Notification state={notification} />
           </li>
           <li>
-            {!loginButton && (
+            {/* {!loginButton && (
               <span>
                 {/* <Link href="/login" className={styles.link}> */}
-                  <img
+                  {/*<img
                     src="/images/icons/user_login.png"
                     alt=""
                     className={styles.user_icon}
-                  />{" "}
-                {/* </Link> */}
+                  />{" "}*/}
+                {/* </Link> 
               </span>
-            )}
-            {loginButton && (
+            )}  */}
+
+            {/* {loginButton && (
               <span>
                 <Link href="/restaurant" className={styles.link}>
                   <img src="" alt="" className="user_icon" />
                 </Link>
               </span>
-            )}
+            )} */}
+
+            <SigninButton/>
           </li>
         </ul>
       </div>
