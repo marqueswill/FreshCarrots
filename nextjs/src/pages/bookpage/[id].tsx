@@ -1,50 +1,32 @@
 import Link from "next/link";
-import { Book, User, UserBook } from "@/types/types";
 import styles from "@/styles/BookPage.module.css";
 import CardRequest from "@/components/CardRequest";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { useRouter } from "next/router";
+import { Book } from "@prisma/client";
+import { getBookRequests } from "@/lib/requests";
 
-let user: User = {
-  name: "José da Silva",
-  title: "Bookwork",
-  image: "/images/user_icon.png",
-  score: 100,
-  email: "email@gmail.com",
+export const getServerSideProps: GetServerSideProps<{
+  book: any;
+}> = async (context) => {
+  const isbn = context.query.id;
+  const res = await fetch(`http://localhost:3000/api/bookpage/${isbn}`, {
+    method: "GET",
+  });
+  const book = await res.json();
+  return { props: { book } };
 };
 
-let book: Book = {
-  isnb: "978-6555584059",
-  title: "Princípios de Sistemas de Informação",
-  author: "George W. Reynolds",
-  edition: 14,
-  year: 2021,
-  category: "Engenharias e Tecnologia",
-  grade: 3.5,
-  pages: 600,
-  url: "/",
-  language: "Português-Brasil",
-  sinopse:
-    "Esta edição de Princípios de sistemas de informação oferece a cobertura tradicional de conceitos de informática, mas coloca o material no contexto de atender às necessidades de empresas e organizações. Colocar os conceitos de sistemas de informação neste contexto e assumir uma perspectiva de gestão sempre diferenciou este livro de outros de informática, tornando-o atraente não apenas para os alunos com especialização em sistema de informação de gestão, mas também para estudantes de outras áreas de estudo. O texto não é excessivamente técnico, mas trata do papel desempenhado pelos sistemas de informação em uma organização e os princípios-chave que um gestor ou especialista em tecnologia precisa saber para ser bem-sucedido.",
-  thumbnail: "/images/book.png",
-};
+export default function MenuPage({
+  book,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const router = useRouter();
 
-let userBook: UserBook = {
-  id: 1,
-  book: book,
-  user: user,
-  avaliability: new Map([
-    ["borrow", false],
-    ["trade", true],
-  ]),
-  condition: "Pouco usado",
-  place: "UnB",
-  solicitations: 3,
-  status: "DISPONÍVEL",
-};
-
-export default function BookPage() {
   if (!book) {
     return <div>Loading...</div>;
   }
+
+  const requests = getBookRequests(book.isbn);
 
   return (
     <div className={styles.bookpage}>
@@ -121,7 +103,11 @@ export default function BookPage() {
         </div>
       </section>
       <section className={styles.avaliable_section}>
-        <CardRequest user={user} userBook={userBook} />
+        {/* <CardRequest user={} userBook={} /> */}
+        {/* {if (requests) {
+          requests.map((request) => {
+          <CardRequest user={request.user} userBook={request.userBook} />;
+        })}} */}
       </section>
     </div>
   );
