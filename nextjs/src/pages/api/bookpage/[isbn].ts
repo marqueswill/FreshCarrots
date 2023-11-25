@@ -10,14 +10,16 @@ export default async function handler(
   switch (req.method) {
     case "GET": {
       try {
-        const menu = await prisma.book.findUnique({
-          where: { isbn: bookIsbn },
+        console.log(bookIsbn);
+        const book = await prisma.book.findUnique({
+          where: { isbn: String(bookIsbn) },
         });
 
-        if (menu) {
-          res.status(200).json(menu);
+
+        if (book) {
+          res.status(200).json(book);
         } else {
-          const message: string = "Menu not found";
+          const message: string = "Book not found";
           res.status(400).json(message);
         }
       } catch (error) {

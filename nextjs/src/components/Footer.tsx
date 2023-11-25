@@ -17,7 +17,7 @@ export default function Footer() {
         <ul className={styles.ul_social}>
           {" "}
           <li className={styles.li}>
-            <Link href="">
+            <Link href="#">
               <img
                 className={styles.social_media_icon}
                 src="/images/icons/instagram.png"
@@ -26,7 +26,7 @@ export default function Footer() {
             </Link>
           </li>
           <li className={styles.li}>
-            <Link href="">
+            <Link href="#">
               <img
                 className={styles.social_media_icon}
                 src="/images/icons/facebook.png"
@@ -35,7 +35,7 @@ export default function Footer() {
             </Link>
           </li>
           <li className={styles.li}>
-            <Link href="">
+            <Link href="#">
               <img
                 className={styles.social_media_icon}
                 src="/images/icons/whatsapp.png"
@@ -49,22 +49,22 @@ export default function Footer() {
         <h1 className={styles.h1}>Explorar</h1>
         <ul className={styles.ul}>
           <li className={styles.li}>
-            <Link href="" className={styles.a}>
+            <Link href="#" className={styles.a}>
               Busca avançada
             </Link>
           </li>
           <li className={styles.li}>
-            <Link href="" className={styles.a}>
+            <Link href="#" className={styles.a}>
               Meu perfil
             </Link>
           </li>
           <li className={styles.li}>
-            <Link href="" className={styles.a}>
+            <Link href="#" className={styles.a}>
               Registrar livro
             </Link>
           </li>
           <li className={styles.li}>
-            <Link href="" className={styles.a}>
+            <Link href="#" className={styles.a}>
               Avaliação
             </Link>
           </li>
@@ -74,17 +74,17 @@ export default function Footer() {
         <h1 className={styles.h1}>Ajuda</h1>
         <ul className={styles.ul}>
           <li className={styles.li}>
-            <Link href="" className={styles.a}>
+            <Link href="#" className={styles.a}>
               Centro de Ajuda
             </Link>
           </li>
           <li className={styles.li}>
-            <Link href="" className={styles.a}>
+            <Link href="#" className={styles.a}>
               Reportar problema
             </Link>
           </li>
           <li className={styles.li}>
-            <Link href="" className={styles.a}>
+            <Link href="#" className={styles.a}>
               Sugerir mudanças
             </Link>
           </li>

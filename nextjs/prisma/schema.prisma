@@ -11,16 +11,18 @@ datasource db {
 }
 
 model User {
-  cpf         BigInt  @id @default(autoincrement())
+  cpf         String  @unique
+  username    String  @unique
   name        String
-  image       String
   email       String  @unique
   phoneNumber String  @unique
+  image       String?
   password    String
   college     String?
-  title       String
-  score       Int
-  idAdmin     Boolean
+  course      String?
+  title       String?
+  score       Int     @default(0)
+  isAdmin     Boolean @default(false)
 
   Review   Review[]
   UserBook UserBook[]
@@ -28,30 +30,31 @@ model User {
 }
 
 model Book {
-  isbn     String @id
-  title    String
-  author   String
-  edition  Int
-  year     Int
-  category String @default("")
-  grade    Int    @default(0)
-  pages    Int
-  language String
-  sinopse  String
+  isbn      String @unique
+  title     String
+  author    String
+  edition   Int
+  year      Int
+  category  String @default("")
+  grade     Int?
+  pages     Int
+  language  String
+  sinopse   String
+  thumbnail String
 
   Review   Review[]
   UserBook UserBook[]
 }
 
 model UserBook {
-  id            BigInt  @id @default(autoincrement())
+  id            Int     @id @default(autoincrement())
   condition     String
   forBorrow     Boolean
   forLending    Boolean
   avaliable     Boolean
   solicitations Int
 
-  cpf  BigInt
+  cpf  String
   isbn String
 
   user User   @relation(fields: [cpf], references: [cpf])
@@ -65,21 +68,21 @@ model Loan {
   start String
   end   String
 
-  lenderCpf      BigInt?
-  borrowerBookId BigInt
-  // borrowerCpf BigInt? //is already on userBook
+  lenderCpf      String?
+  borrowerBookId Int
+  // borrowerCpf Int? //is already on userBook
 
   BorrowerBook UserBook @relation(fields: [borrowerBookId], references: [id])
   Lender       User?    @relation(fields: [lenderCpf], references: [cpf])
 }
 
 model Review {
-  idReview Int    @id
+  idReview Int    @unique
   grade    Int
   comment  String
 
   bookIsbn String
-  userCpf  BigInt
+  userCpf  String
 
   user User @relation(fields: [userCpf], references: [cpf])
   book Book @relation(fields: [bookIsbn], references: [isbn])

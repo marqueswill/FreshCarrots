@@ -5,29 +5,27 @@ import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import { Book } from "@prisma/client";
 import { getBookRequests } from "@/lib/requests";
+import { prisma } from "../../../../prisma/prisma";
 
 export const getServerSideProps: GetServerSideProps<{
   book: any;
 }> = async (context) => {
-  const isbn = context.query.id;
-  const res = await fetch(`http://localhost:3000/api/bookpage/${isbn}`, {
-    method: "GET",
-  });
-  const book = await res.json();
+  const isbn = String(context.query.isbn);
+  const book = await prisma.book.findUnique({ where: { isbn: isbn } });
   return { props: { book } };
 };
 
-export default function MenuPage({
+export default function BookPage({
   book,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter();
 
-  if (!book) {
-    return <div>Loading...</div>;
-  }
+  // if (!book) {
+  //   return <div>Loading...</div>;
+  // }
 
-  const requests = getBookRequests(book.isbn);
-
+  // const requests = getBookRequests(book.isbn);
+  console.log(book);
   return (
     <div className={styles.bookpage}>
       <section className={styles.book_section}>
@@ -35,7 +33,7 @@ export default function MenuPage({
           <div className={styles.top_div}>
             <div className={styles.images}>
               <img
-                src={book.thumbnail}
+                src={`/images/thumbnails/${book.isbn}.png`}
                 alt={book.title}
                 className={styles.thumbnail}
               />
@@ -46,14 +44,21 @@ export default function MenuPage({
                 <h1 className={styles.title}>{book.title}</h1>
                 <h3 className={styles.author}>{book.author}</h3>
               </div>
+              <br />
               <table>
                 <tbody>
                   {" "}
                   <tr>
                     <td>
+                      <b>Ano:</b>
+                    </td>
+                    <td>{book.year}</td>
+                  </tr>
+                  <tr>
+                    <td>
                       <b>Edição:</b>
                     </td>
-                    <td>{book.edition}</td>
+                    <td>{book.edition}ª edição</td>
                   </tr>
                   <tr>
                     <td>
@@ -71,7 +76,7 @@ export default function MenuPage({
                     <td>
                       <b>ISBN:</b>
                     </td>
-                    <td>{book.isnb}</td>
+                    <td>{book.isbn}</td>
                   </tr>
                   <tr>
                     <td>
@@ -81,24 +86,26 @@ export default function MenuPage({
                   </tr>
                 </tbody>
               </table>
-              <p className={styles.sinopse}>
-                <b>Sinopse:</b> {book.sinopse}
-              </p>
             </div>
           </div>
           <div className={styles.bottom_div}>
-            <Link href="" className={styles.button}>
-              <img src="/images/icons/avaliation.png" />
-              Avaliações
-            </Link>
-            <Link href="" className={styles.button}>
-              <img src="/images/icons/avaliable.png" />
-              Disponíveis
-            </Link>
-            <Link href="" className={styles.button}>
-              <img src="/images/icons/register.png" />
-              Registrar exemplar
-            </Link>
+            <p className={styles.sinopse}>
+              <b>Sinopse:</b> {book.sinopse}
+            </p>
+            <div className={styles.actions}>
+              <Link href="#" className={styles.button}>
+                <img src="/images/icons/avaliation.png" />
+                Avaliações
+              </Link>
+              <Link href="#" className={styles.button}>
+                <img src="/images/icons/avaliable.png" />
+                Disponíveis
+              </Link>
+              <Link href="#" className={styles.button}>
+                <img src="/images/icons/register.png" />
+                Registrar exemplar
+              </Link>
+            </div>
           </div>
         </div>
       </section>
