@@ -3,16 +3,12 @@ import React from "react";
 import { getSession, signIn, signOut, useSession } from "next-auth/react";
 import styles from "@/styles/SigninButton.module.css";
 import Link from "next/link";
-import { prisma } from "../../prisma/prisma";
+import { getUser } from "@/lib/user";
 
 export default function SigninButton() {
   const { data: session } = useSession();
 
   if (session && session.user) {
-    const userInfo = prisma.user.findUnique({
-      where: { email: String(session.user.email) },
-    });
-
     return (
       <div
         style={{
@@ -40,6 +36,7 @@ export default function SigninButton() {
     );
   }
 
+  
   return (
     <button
       onClick={() =>
