@@ -101,7 +101,7 @@ export default function BookPage({
                 <img src="/images/icons/avaliable.png" />
                 Disponíveis
               </Link>
-              <Link href="/book/bookpage/register" className={styles.button}>
+              <Link href="/book/register" className={styles.button}>
                 <img src="/images/icons/register.png" />
                 Registrar exemplar
               </Link>
