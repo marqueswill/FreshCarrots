@@ -6,22 +6,23 @@
     <title>Página Inicial</title>
 </head>
 <body>
-    {% if user.is_authenticated %}
-        {% if user.is_verified %}
-            <!-- Conteúdo para usuários autenticados e verificados -->
-            <h2>Bem-vindo, {{ user.username }}!</h2>
-            <p>Este é o conteúdo para usuários autenticados e verificados.</p>
-        {% else %}
-            <!-- Conteúdo para usuários autenticados, mas não verificados -->
-            <h2>Verificação pendente</h2>
-            <p>Sua conta ainda não foi verificada. Por favor, aguarde a verificação.</p>
-        {% endif %}
+    {% if not user.is_anonymous %}
+        <!-- Conteúdo para usuários autenticados e verificados -->
+        <h2>Bem-vindo, {{ user.username }}!</h2>
+        <p>Este é o conteúdo para usuários autenticados e verificados.</p>
+        <form action="{% url 'logout_usuario' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+
     {% else %}
         <!-- Conteúdo para usuários não autenticados -->
+        
         <h2>Bem-vindo ao nosso site!</h2>
         <p>Este é o conteúdo para usuários não autenticados.</p>
         <a href="{% url 'cadastrar_usuario' %}">Cadastrar</a>
         <a href="{% url 'login_usuario' %}">Login</a>
+
     {% endif %}
 </body>
 </html>
