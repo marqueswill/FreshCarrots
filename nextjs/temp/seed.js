@@ -141,7 +141,19 @@ function seed() {
                 case 4:
                     i++;
                     return [3 /*break*/, 2];
-                case 5:
+                case 5: return [4 /*yield*/, prisma_1.prisma.userBook.create({
+                        data: {
+                            condition: "Novo",
+                            forLoan: true,
+                            forTrade: true,
+                            avaliable: true,
+                            solicitations: 0,
+                            cpf: "08960522175",
+                            isbn: "655558405X",
+                        },
+                    })];
+                case 6:
+                    _a.sent();
                     console.log("Seed completed successfully");
                     return [2 /*return*/];
             }

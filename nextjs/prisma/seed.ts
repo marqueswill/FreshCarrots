@@ -94,6 +94,18 @@ async function seed() {
     });
   }
 
+  await prisma.userBook.create({
+    data: {
+      condition: "Novo",
+      forLoan: true,
+      forTrade: true,
+      avaliable: true,
+      solicitations: 0,
+      cpf: "08960522175",
+      isbn: "655558405X",
+    },
+  });
+
   console.log("Seed completed successfully");
 }
 

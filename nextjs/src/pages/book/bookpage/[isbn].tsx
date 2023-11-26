@@ -3,29 +3,31 @@ import styles from "@/styles/BookPage.module.css";
 import CardRequest from "@/components/CardRequest";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
-import { Book } from "@prisma/client";
-import { getBookRequests } from "@/lib/requests";
 import { prisma } from "../../../../prisma/prisma";
 
 export const getServerSideProps: GetServerSideProps<{
   book: any;
+  userBooks: any;
 }> = async (context) => {
   const isbn = String(context.query.isbn);
   const book = await prisma.book.findUnique({ where: { isbn: isbn } });
-  return { props: { book } };
+  const userBooks = await prisma.userBook.findMany({
+    where: { isbn: isbn, avaliable: true },
+    include: { book: true, user: true },
+  });
+  return { props: { book, userBooks } };
 };
 
 export default function BookPage({
   book,
+  userBooks,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter();
+  console.log(userBooks);
+  if (!book) {
+    return <div>Loading...</div>;
+  }
 
-  // if (!book) {
-  //   return <div>Loading...</div>;
-  // }
-
-  // const requests = getBookRequests(book.isbn);
-  console.log(book);
   return (
     <div className={styles.bookpage}>
       <section className={styles.book_section}>
@@ -110,11 +112,10 @@ export default function BookPage({
         </div>
       </section>
       <section className={styles.avaliable_section}>
-        {/* <CardRequest user={} userBook={} /> */}
-        {/* {if (requests) {
-          requests.map((request) => {
-          <CardRequest user={request.user} userBook={request.userBook} />;
-        })}} */}
+        {userBooks &&
+          userBooks.map((userBook: any) => {
+            return <CardRequest userBook={userBook} />;
+          })}
       </section>
     </div>
   );

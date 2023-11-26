@@ -49,8 +49,8 @@ model Book {
 model UserBook {
   id            Int     @id @default(autoincrement())
   condition     String
-  forBorrow     Boolean
-  forLending    Boolean
+  forLoan     Boolean
+  forTrade      Boolean
   avaliable     Boolean
   solicitations Int
 
