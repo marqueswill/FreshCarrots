@@ -19,7 +19,7 @@ class Book(models.Model):
 class UserBook(models.Model):
     id = models.BigIntegerField(primary_key=True)
     isbn = models.BigIntegerField()
-    idUser = models.CharField()
+    idUser = models.BigIntegerField()
     availability = models.CharField(max_length=20)
     
     def __str__(self):
