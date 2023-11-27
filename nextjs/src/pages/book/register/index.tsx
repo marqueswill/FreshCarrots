@@ -2,9 +2,11 @@ import styles from "@/styles/BookRegister.module.css";
 import { useSession } from "next-auth/react";
 import Login from "@/pages/login";
 import { useState } from "react";
-import { useRouter } from "next/router";
+import { register } from "module";
+import { registerUserBook } from "@/lib/userBook";
 
-const handleRegister = async (props: {
+
+export const handleRegister = async (props: {
   isbn: string;
   email: string;
   condition: string;
@@ -13,6 +15,7 @@ const handleRegister = async (props: {
   forTrade: boolean;
 }) => {
   console.log(props);
+  // registerUserBook(props);
 
   const res = await fetch(`/api/book/register`, {
     method: "POST",
@@ -24,7 +27,9 @@ const handleRegister = async (props: {
       forLoan: props.forLoan,
       forTrade: props.forTrade,
     }),
+    headers: {'Content-Type': 'application/json'}
   });
+  // res.json();
 };
 
 export default function () {

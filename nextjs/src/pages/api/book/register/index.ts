@@ -7,6 +7,8 @@ export default async function handler(
 ) {
   try {
     if (req.method === "POST") {
+      console.log(req.body);
+
       const userBook = await prisma.userBook.create({
         data: {
           isbn: req.body.isbn,
@@ -15,7 +17,7 @@ export default async function handler(
           maxPeriod: req.body.period,
           forLoan: req.body.forLoan,
           forTrade: req.body.forTrade,
-          // avaliable: true,
+          avaliable: true,
         },
       });
 
@@ -25,7 +27,7 @@ export default async function handler(
         res.status(500).json({ error: "Erro ao registrar o livro." });
       }
     } else {
-      res.status(405).json({ error: "Método não suportado." });
+      res.status(400).json({ error: "Método não suportado." });
     }
   } catch (error) {
     console.error(error);
