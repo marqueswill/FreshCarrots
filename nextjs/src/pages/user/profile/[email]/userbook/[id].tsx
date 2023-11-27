@@ -1,4 +1,4 @@
-import styles from "@/styles/UserShelf.module.css";
+import styles from "@/styles/UserBookPage.module.css";
 import CardApproval from "@/components/CardApproval";
 import ShowUserBook from "@/components/ShowUserBook";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
@@ -9,10 +9,12 @@ export const getServerSideProps: GetServerSideProps<{
   loanRequests: any;
 }> = async (context) => {
   const userBookId = Number(context.query.id);
+
   const userBook = await prisma.userBook.findUnique({
     where: { id: userBookId },
     include: { book: true, user: true },
   });
+
   const loanRequests = await prisma.loan.findMany({
     where: { LenderBookId: userBookId },
     include: {

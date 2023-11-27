@@ -58,7 +58,7 @@ export default function UserShelf({ shelf }: { shelf: any }) {
                       alt="navigate"
                       className={styles.action}
                       onClick={() => {
-                        window.location.href = `/user/profile/${userBook.user.email}/userbook/${userBook.book.isbn}`;
+                        window.location.href = `/user/profile/${userBook.user.email}/userbook/${userBook.id}`;
                       }}
                     />
                   </button>
