@@ -49,15 +49,16 @@ model Book {
 model UserBook {
   id            Int     @id @default(autoincrement())
   condition     String
-  forLoan     Boolean
+  forLoan       Boolean
   forTrade      Boolean
-  avaliable     Boolean
-  solicitations Int
+  avaliable     Boolean @default(false)
+  solicitations Int?    @default(0)
+  maxPeriod     Int
 
-  cpf  String
-  isbn String
+  email String
+  isbn  String
 
-  user User   @relation(fields: [cpf], references: [cpf])
+  user User   @relation(fields: [email], references: [email])
   book Book   @relation(fields: [isbn], references: [isbn])
   Loan Loan[]
 }
@@ -68,12 +69,11 @@ model Loan {
   start String
   end   String
 
-  lenderCpf      String?
-  borrowerBookId Int
-  // borrowerCpf Int? //is already on userBook
+  LenderBookId Int
+  BorrowerCpf  String?
 
-  BorrowerBook UserBook @relation(fields: [borrowerBookId], references: [id])
-  Lender       User?    @relation(fields: [lenderCpf], references: [cpf])
+  LenderBook UserBook? @relation(fields: [LenderBookId], references: [id])
+  Borrower   User?    @relation(fields: [BorrowerCpf], references: [cpf])
 }
 
 model Review {

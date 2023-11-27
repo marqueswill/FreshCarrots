@@ -4,7 +4,7 @@ import styles from "@/styles/UserPage.module.css";
 import Link from "next/link";
 import Notification from "@/components/Notification";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { prisma } from "../../../../prisma/prisma";
+import { prisma } from "../../../../../prisma/prisma";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 
@@ -15,8 +15,8 @@ export const getServerSideProps: GetServerSideProps<{
   const userEmail = String(context.query.email);
   const user = await prisma.user.findUnique({ where: { email: userEmail } });
   const userBooks = await prisma.userBook.findMany({
-    where: { cpf: user?.cpf },
-    include: { book: true },
+    where: { email: user?.email },
+    include: { book: true, user: true },
   });
 
   return { props: { user, userBooks } };
