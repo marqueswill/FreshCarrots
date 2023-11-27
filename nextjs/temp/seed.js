@@ -148,7 +148,8 @@ function seed() {
                             forTrade: true,
                             avaliable: true,
                             solicitations: 0,
-                            cpf: "08960522175",
+                            maxPeriod: 14,
+                            email: "willyanmarquesmelo@gmail.com",
                             isbn: "655558405X",
                         },
                     })];

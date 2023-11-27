@@ -11,3 +11,24 @@ export function getAvailability(availability: Boolean[]) {
     return "Indisponível";
   }
 }
+
+export async function registerUserBook(props: {
+  isbn: string;
+  email: string;
+  condition: string;
+  period: number;
+  forLoan: boolean;
+  forTrade: boolean;
+}) {
+  const userBook = await prisma.userBook.create({
+    data: {
+      isbn: props.isbn,
+      email: props.email,
+      condition: props.condition,
+      maxPeriod: props.period,
+      forLoan: props.forLoan,
+      forTrade: props.forTrade,
+      avaliable: true,
+    },
+  });
+}

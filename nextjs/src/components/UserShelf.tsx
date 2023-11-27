@@ -1,10 +1,10 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import React, { Component } from "react";
+import React from "react";
 import styles from "@/styles/UserShelf.module.css";
-import Link from "next/link";
-import { table } from "console";
+
+function deleteUserBook() {}
 
 export default function UserShelf({ shelf }: { shelf: any }) {
   const settings = {
@@ -42,13 +42,11 @@ export default function UserShelf({ shelf }: { shelf: any }) {
               <tr className={styles.lines}>
                 <td className={styles.column1}>{userBook.id}</td>
                 <td className={styles.column2}>
-                  <Link href={`/book/bookpage/${userBook.book.isbn}`}>
-                    <img
-                      src={`/images/thumbnails/${userBook.book.isbn}.png`}
-                      alt={userBook.book.title}
-                      className={styles.thumbnail}
-                    />
-                  </Link>
+                  <img
+                    src={`/images/thumbnails/${userBook.book.isbn}.png`}
+                    alt={userBook.book.title}
+                    className={styles.thumbnail}
+                  />
                 </td>
                 <td className={styles.column3}>{userBook.book.title}</td>
                 <td className={styles.column4}>{userBook.condition}</td>
@@ -56,9 +54,22 @@ export default function UserShelf({ shelf }: { shelf: any }) {
                 <td className={styles.column6}>
                   <button className={styles.button}>
                     <img
+                      src="/images/icons/navigate.png"
+                      alt="navigate"
+                      className={styles.action}
+                      onClick={() => {
+                        window.location.href = `/user/profile/${userBook.user.email}/userbook/${userBook.id}`;
+                      }}
+                    />
+                  </button>
+                  <button className={styles.button}>
+                    <img
                       src="/images/icons/edit.png"
                       alt="edit"
                       className={styles.action}
+                      // onClick={() => {
+                      //   window.location.href = `/user/profile/${userBook.user.email}/userbook/${userBook.book.isbn}`;
+                      // }}
                     />
                   </button>
                   <button className={styles.button}>
@@ -66,6 +77,9 @@ export default function UserShelf({ shelf }: { shelf: any }) {
                       src="/images/icons/remove.png"
                       alt="remove"
                       className={styles.action}
+                      onClick={(event) => {
+                        deleteUserBook;
+                      }}
                     />
                   </button>
                 </td>

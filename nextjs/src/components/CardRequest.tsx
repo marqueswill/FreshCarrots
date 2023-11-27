@@ -2,6 +2,10 @@ import { getAvailability } from "@/lib/userBook";
 import {} from "@/pages/_app";
 import styles from "@/styles/CardRequest.module.css";
 
+function handleLoanRequest(){}
+function handleTradeRequest(){}
+
+
 function Button({
   children,
 
@@ -18,8 +22,9 @@ function Button({
         // <Link href={`/request/${isbn}`}>
         <button
           className={styles.button_true}
-          onClick={() => {
-            window.location.href = href;
+          onClick={(event) => {
+            handleLoanRequest
+            // window.location.href = href;
           }}
         >
           {children}
@@ -52,7 +57,7 @@ export default function Card({ userBook }: { userBook: any }) {
             </ul>
             <ul className={styles.info_data}>
               <li>
-                {getAvailability([userBook.forBorrow, userBook.forLending])}
+                {getAvailability([userBook.forLoan, userBook.forTrade])}
               </li>
               <li>{userBook.condition}</li>
               <li>{userBook.place}</li>
