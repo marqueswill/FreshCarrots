@@ -31,6 +31,7 @@ export default function ShowUserBook({ userBook }: { userBook: any }) {
             <li>Estado físico:</li>
             <li>Disponibilidade:</li>
             <li>Período:</li>
+            <li>Contato:</li>
           </ul>
           <br />
           <ul className={styles.info_data}>
@@ -50,6 +51,7 @@ export default function ShowUserBook({ userBook }: { userBook: any }) {
             <li>{userBook.condition}</li>
             <li>{getAvailability([userBook.forLoan,userBook.forTrade])}</li>
             <li>No máximo {userBook.maxPeriod} dia(s)</li>
+            <li>{userBook.user.email}</li>
           </ul>
         </div>
       </div>

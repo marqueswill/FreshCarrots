@@ -35,7 +35,6 @@ async function seed() {
   const languageList = [
     "Português",
     "Português",
-
     "Português",
     "Português",
     "Português",
