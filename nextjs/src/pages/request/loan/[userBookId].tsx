@@ -5,7 +5,7 @@ import { useState } from "react";
 import { prisma } from "../../../../prisma/prisma";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import Login from "@/pages/login";
+import Login from "@/pages/user/login";
 
 export const handleRequest = async (props: {
   period: number;

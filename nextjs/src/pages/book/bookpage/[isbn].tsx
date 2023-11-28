@@ -27,7 +27,10 @@ export default function BookPage({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter();
   const { data: session } = useSession();
+
+  console.log(book);
   console.log(userBooks);
+
   if (!book) {
     return <div>Loading...</div>;
   }

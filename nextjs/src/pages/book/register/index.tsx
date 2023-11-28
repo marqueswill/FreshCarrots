@@ -1,6 +1,6 @@
 import styles from "@/styles/BookRegister.module.css";
 import { useSession } from "next-auth/react";
-import Login from "@/pages/login";
+import Login from "@/pages/user/login";
 import { useState } from "react";
 import { register } from "module";
 import { registerUserBook } from "@/lib/userBook";
@@ -14,7 +14,8 @@ export const handleRegister = async (props: {
   forTrade: boolean;
 }) => {
   console.log(props);
-  const res = await fetch(`/api/book/register`, {
+  
+  const res = await fetch(`http://localhost:8000/api/book/register`, {
     method: "POST",
     body: JSON.stringify({
       isbn: props.isbn,
@@ -185,7 +186,7 @@ export default function RegisterUserBookPage() {
       </div>
     );
   } else {
-    return <Login />;
+    window.location.href = "/user/login";
   }
 }
 
