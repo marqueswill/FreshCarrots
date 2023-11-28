@@ -12,6 +12,7 @@ export default async function handler(
         const existingLoan = await prisma.loan.findMany({
           where: {
             borrowerEmail: req.body.borrowerEmail,
+            status: "Pendente",
           },
         });
 
@@ -64,6 +65,10 @@ export default async function handler(
         });
 
         if (loanRequest) {
+          const userBook = await prisma.userBook.update({
+            where: { id: loanRequest.lenderBookId },
+            data: { solicitations: { decrement: 1 } },
+          }); 
           res
             .status(200)
             .json({ message: "Pedido de empréstimo realizado com sucesso." });
