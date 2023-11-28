@@ -31,6 +31,6 @@ export default async function handler(
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Erro interno do servidor." });
+    res.status(500).json({ error: "Erro ao registrar o livro." });
   }
 }

@@ -5,7 +5,6 @@ import { useState } from "react";
 import { register } from "module";
 import { registerUserBook } from "@/lib/userBook";
 
-
 export const handleRegister = async (props: {
   isbn: string;
   email: string;
@@ -15,8 +14,6 @@ export const handleRegister = async (props: {
   forTrade: boolean;
 }) => {
   console.log(props);
-  // registerUserBook(props);
-
   const res = await fetch(`/api/book/register`, {
     method: "POST",
     body: JSON.stringify({
@@ -27,12 +24,20 @@ export const handleRegister = async (props: {
       forLoan: props.forLoan,
       forTrade: props.forTrade,
     }),
-    headers: {'Content-Type': 'application/json'}
+    headers: { "Content-Type": "application/json" },
   });
-  // res.json();
+
+  if (res.ok) {
+    const data = await res.json();
+    alert(data.message);
+    window.location.href = `/user/profile/${props.email}`;
+  } else {
+    const data = await res.json();
+    alert(data.error);
+  }
 };
 
-export default function () {
+export default function RegisterUserBookPage() {
   const { data: session } = useSession();
 
   const [isbn, setIsbn] = useState("");
@@ -66,7 +71,16 @@ export default function () {
                 forTrade: forTrade,
                 period: period,
               };
-              handleRegister(data);
+              if (
+                isbn != "" &&
+                condition != "" &&
+                period > 0 &&
+                (forLoan || forTrade)
+              ) {
+                handleRegister(data);
+              } else {
+                alert("Todos campos devem ser preenchidos.");
+              }
             }}
           >
             <div className={styles.lado_a_lado}>
@@ -130,7 +144,7 @@ export default function () {
                       className={styles.checkbox}
                       id="emprestimo"
                       onChange={(event) => {
-                        setForLoan(Boolean(event.target.value));
+                        setForLoan(Boolean(event.target.checked));
                       }}
                     />
                     <label>Empréstimo</label>

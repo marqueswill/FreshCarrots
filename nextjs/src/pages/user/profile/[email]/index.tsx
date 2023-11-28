@@ -30,7 +30,7 @@ export default function UserPage({
   const notification = false;
   const { data: session } = useSession();
 
-  console.log(userBooks);
+  // console.log(userBooks);
 
   if (session && session.user) {
     return (

@@ -16,7 +16,7 @@ export const getServerSideProps: GetServerSideProps<{
   });
 
   const loanRequests = await prisma.loan.findMany({
-    where: { LenderBookId: userBookId },
+    where: { lenderBookId: userBookId },
     include: {
       LenderBook: { include: { book: true, user: true } }, //lender (user)
       Borrower: true, // borrower

@@ -23,8 +23,9 @@ function Button({
         <button
           className={styles.button_true}
           onClick={(event) => {
-            handleLoanRequest
-            // window.location.href = href;
+            // const data = {}
+            // handleLoanRequest()
+            window.location.href = href;
           }}
         >
           {children}
@@ -87,7 +88,7 @@ export default function Card({ userBook }: { userBook: any }) {
         <div className={styles.actions}>
           <Button
             enable={userBook.forLoan}
-            href={`/request/lending/${userBook.id}`}
+            href={`/request/loan/${userBook.id}`}
           >
             Empréstimo
           </Button>

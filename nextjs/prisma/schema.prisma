@@ -64,16 +64,17 @@ model UserBook {
 }
 
 model Loan {
-  id    Int    @id @default(autoincrement())
-  time  Int
-  start String
-  end   String
+  id     Int     @id @default(autoincrement())
+  period Int
+  status String
+  start  String? //will be set upon confirming the loan
+  end    String?
 
-  LenderBookId Int
-  BorrowerCpf  String?
+  lenderBookId  Int
+  borrowerEmail String
 
-  LenderBook UserBook? @relation(fields: [LenderBookId], references: [id])
-  Borrower   User?    @relation(fields: [BorrowerCpf], references: [cpf])
+  LenderBook UserBook? @relation(fields: [lenderBookId], references: [id])
+  Borrower   User?     @relation(fields: [borrowerEmail], references: [email])
 }
 
 model Review {
