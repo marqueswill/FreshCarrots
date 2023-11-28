@@ -16,7 +16,7 @@ export const getServerSideProps: GetServerSideProps<{
   });
 
   const loanRequests = await prisma.loan.findMany({
-    where: { lenderBookId: userBookId },
+    where: { lenderBookId: userBookId, status: "Pendente" },
     include: {
       LenderBook: { include: { book: true, user: true } }, //lender (user)
       Borrower: true, // borrower
@@ -33,9 +33,12 @@ export default function UserBookPage({
   return (
     <div className={styles.page}>
       <ShowUserBook userBook={userBook} />
-      {loanRequests.map((bookRequest: any) => {
-        <CardApproval bookRequest={bookRequest} />;
-      })}
+      <div className={styles.requests_div}>
+        <h1>Pedidos de empréstimo:</h1>
+        {loanRequests.map((bookRequest: any) => {
+          return <CardApproval bookRequest={bookRequest} />;
+        })}
+      </div>
     </div>
   );
 }

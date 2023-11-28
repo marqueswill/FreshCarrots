@@ -5,7 +5,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  try {
+  try { 
     if (req.method === "POST") {
       console.log(req.body);
 
@@ -31,6 +31,6 @@ export default async function handler(
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Erro ao registrar o livro." });
+    res.status(500).json({ error: "Livro não existe na base de dados." });
   }
 }

@@ -1,25 +1,44 @@
 import { getAvailability } from "@/lib/userBook";
-import {} from "@/pages/_app";
 import styles from "@/styles/CardApproval.module.css";
+import { error } from "console";
 
-function handleAccept() {}
-function handleReject() {}
+export const handleAccept = async (bookRequest: any) => {
+  console.log(bookRequest);
+  const res = await fetch(`/api/request/loan`, {
+    method: "PUT",
+    body: JSON.stringify({
+      id: bookRequest.id,
+      status: "Aceito",
+    }),
+    headers: { "Content-Type": "application/json" },
+  });
+  window.location.reload()
+};
+
+export const handleReject = async (bookRequest: any) => {
+  console.log(bookRequest);
+  const res = await fetch(`/api/request/loan`, {
+    method: "PUT",
+    body: JSON.stringify({
+      id: bookRequest.id,
+      status: "Rejeitado",
+    }),
+    headers: { "Content-Type": "application/json" },
+  });
+  window.location.reload()
+};
 
 export default function CardApproval({ bookRequest }: { bookRequest: any }) {
   return (
     <div className={styles.card}>
       <div className={styles.user_div}>
-        <img
-          src={bookRequest.borrower.image}
-          alt=""
-          className={styles.user_icon}
-        />
+        <img src={bookRequest.Borrower.image} className={styles.user_icon} />
         <div className={styles.user_info}>
-          <h1 className={styles.user_name}>{bookRequest.borrower.name}</h1>
-          <h2 className={styles.user_title}>{bookRequest.borrower.title}</h2>
+          <h1 className={styles.user_name}>{bookRequest.Borrower.name}</h1>
+          <h2 className={styles.user_title}>{bookRequest.Borrower.title}</h2>
           <div className={styles.score}>
             <img src="/images/carrot.png" className={styles.score_icon} />
-            <p className={styles.score_value}>{bookRequest.borrower.score}%</p>
+            <p className={styles.score_value}>{bookRequest.Borrower.score}%</p>
           </div>
         </div>
       </div>
@@ -31,37 +50,38 @@ export default function CardApproval({ bookRequest }: { bookRequest: any }) {
             <li>Faculdade:</li>
             <li>Disponibilidade:</li>
             <li>Tempo:</li>
-            <li>Data:</li>
+            {/* <li>Data:</li> */}
           </ul>
           <ul className={styles.info_data}>
-            <li>{bookRequest.borrower.course}</li>
-            <li>{bookRequest.borrower.college}</li>
+            <li>{bookRequest.Borrower.course}</li>
+            <li>{bookRequest.Borrower.college}</li>
             <li>
               {getAvailability([
-                bookRequest.lenderBook.forLoan,
-                bookRequest.lenderBook.forTrade,
+                bookRequest.LenderBook.forLoan,
+                bookRequest.LenderBook.forTrade,
               ])}
             </li>
-            <li>{bookRequest.time} dia(s)</li>
-            <li>{bookRequest.start + " - " + bookRequest.end}</li>
+            <li>{bookRequest.period} dia(s)</li>
+            {/* <li>{bookRequest.start + " - " + bookRequest.end}</li> */}
           </ul>
         </div>
       </div>
 
-      <div className={styles.actions}>
+      <div className={styles.actions_div}>
         <button
-          onClick={() => {
-            handleReject;
-          }}
           className={styles.button}
+          onClick={(event) => {
+            handleReject(bookRequest);
+          }}
         >
           <img src="/images/icons/reject.png" alt="" />
         </button>
         <button
-          onClick={() => {
-            handleAccept;
-          }}
           className={styles.button}
+          onClick={(event) => {
+            // console.log(bookRequest);
+            handleAccept(bookRequest);
+          }}
         >
           <img src="/images/icons/accept.png" alt="" />
         </button>

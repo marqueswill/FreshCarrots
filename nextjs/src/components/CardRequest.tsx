@@ -63,7 +63,7 @@ export default function Card({ userBook }: { userBook: any }) {
               <li>{userBook.condition}</li>
               <li>{userBook.place}</li>
               <li>{userBook.user.college}</li>
-              <li>{userBook.solicitations} solicitações</li>
+              <li>{userBook.solicitations} pedido(s)</li>
             </ul>
           </div>
         </div>

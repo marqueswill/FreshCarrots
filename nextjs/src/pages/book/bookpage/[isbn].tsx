@@ -4,17 +4,20 @@ import CardRequest from "@/components/CardRequest";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import { prisma } from "../../../../prisma/prisma";
+import { useSession } from "next-auth/react";
 
 export const getServerSideProps: GetServerSideProps<{
   book: any;
   userBooks: any;
 }> = async (context) => {
   const isbn = String(context.query.isbn);
+
   const book = await prisma.book.findUnique({ where: { isbn: isbn } });
   const userBooks = await prisma.userBook.findMany({
     where: { isbn: isbn, avaliable: true },
     include: { book: true, user: true },
   });
+
   return { props: { book, userBooks } };
 };
 
@@ -23,6 +26,7 @@ export default function BookPage({
   userBooks,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter();
+  const { data: session } = useSession();
   console.log(userBooks);
   if (!book) {
     return <div>Loading...</div>;
@@ -49,7 +53,6 @@ export default function BookPage({
               <br />
               <table>
                 <tbody>
-                  {" "}
                   <tr>
                     <td>
                       <b>Ano:</b>
@@ -112,9 +115,16 @@ export default function BookPage({
         </div>
       </section>
       <section className={styles.avaliable_section}>
+        <h1 className={styles.title}>
+          Livros disponíveis para empréstimo e troca:
+        </h1>
         {userBooks &&
           userBooks.map((userBook: any) => {
-            return <CardRequest userBook={userBook} />;
+            return (
+              userBook.user.email != String(session?.user?.email) && (
+                <CardRequest userBook={userBook} />
+              )
+            );
           })}
       </section>
     </div>
