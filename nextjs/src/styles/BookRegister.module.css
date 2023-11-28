@@ -1,0 +1,168 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input_span {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.input_box_isbn {
+  background-color: #f1f1f1;
+  font-size: 24px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  width: 300px;
+  height: 40px;
+  border-radius: 25px;
+}
+
+.input_box_categoria {
+  background-color: #f1f1f1;
+  font-size: 24px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  width: 300px;
+  height: 40px;
+  border-radius: 25px;
+}
+
+.input_box_estado {
+  background-color: #f1f1f1;
+  font-size: 24px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  width: 350px;
+  height: 40px;
+  border-radius: 25px;
+}
+
+.input_box_periodo {
+  background-color: #f1f1f1;
+  font-size: 24px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  width: 150px;
+  height: 40px;
+  border-radius: 25px;
+}
+
+.number_span {
+  display: flex;
+  /* align-items: center; */
+  gap: 15px;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.h1_image {
+  width: 30px;
+  height: 30px;
+}
+
+.h1 {
+  font-size: 32px;
+  margin: 10px;
+}
+
+.label {
+  font-size: 24px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.div {
+  border-radius: 25px;
+  background-color: #fff;
+  width: 1000px;
+  padding: 50px;
+  margin: 50px;
+}
+
+.checkbox_div {
+  display: flex;
+  gap: 25px;
+  height: 30px;
+}
+
+.input_checkbox {
+  display: flex;
+  flex-direction: row;
+  font-size: 24px;
+  align-items: center;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+}
+
+.buttons {
+  width: 1000px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 100px;
+}
+
+.cancel_button {
+  width: 200px;
+  padding: 10px;
+  flex-shrink: 0;
+  border-radius: 50px;
+  background: #d74a4a;
+  margin-bottom: 50px;
+
+  color: #fff;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.register_button {
+  width: 200px;
+  flex-shrink: 0;
+  border-radius: 50px;
+  background: #00d26a;
+  margin-bottom: 50px;
+
+  color: #fff;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.obs {
+  padding-top: 30px;
+  margin: 0;
+}
+
+.lado_a_lado{
+  display: flex;
+  flex-direction: row;
+  gap: 150px
+}

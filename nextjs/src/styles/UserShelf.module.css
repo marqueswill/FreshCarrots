@@ -1,5 +1,90 @@
-.page {
+.estante {
+  width: 900px;
+  display: flex;
+  /* flex-direction: colu mn; */
+  align-items: flex-start;
+}
+
+.h1 {
+  margin: 0;
+  color: #000;
+  font-size: 32px;
+
+  display: inline-flex;
+  justify-self: flex-start;
+}
+
+.table {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  display: flex;
+}
+
+.button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.action {
+  width:  15px;
+  height: 15px;
+  padding: 5px;
+}
+
+.labels {
+  text-align: center;
+  background-color: #ff822d;
+  font-style: normal;
+  font-weight: bold;
+}
+
+.lines {
+  text-align: center;
+  background-color: #fff1d7;
+  display: flexbox;
+  align-items: center;
+  height: 130px;
+}
+
+.thumbnail {
+  width: 90px;
+  height: 120px;
+  border-radius: 10%;
+  cursor: pointer;
+}
+
+.column1 {
+  width: 50px;
+}
+
+.column2 {
+  width: 120px;
+}
+
+.column3 {
+  width: 350px;
+}
+
+.column4 {
+  width: 180px;
+}
+
+.column5 {
+  width: 100px;
+}
+
+.column6 {
+  width: 50px;
+
+  display: flexbox;
+  flex-direction: column;
+}
+
+.requests {
   display: flex;
   flex-direction: column;
-  align-items: center;
 }

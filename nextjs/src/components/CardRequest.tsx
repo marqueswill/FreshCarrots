@@ -1,17 +1,20 @@
+import { getAvailability } from "@/lib/userBook";
 import {} from "@/pages/_app";
 import styles from "@/styles/CardRequest.module.css";
-import { User, UserBook } from "@/types/types";
-import Link from "next/link";
+
+function handleLoanRequest(){}
+function handleTradeRequest(){}
+
 
 function Button({
   children,
 
   enable = false,
-  isbn,
+  href,
 }: {
   children: React.ReactNode;
   enable?: boolean;
-  isbn?: number;
+  href: string;
 }) {
   if (enable != undefined) {
     if (enable) {
@@ -19,8 +22,10 @@ function Button({
         // <Link href={`/request/${isbn}`}>
         <button
           className={styles.button_true}
-          onClick={() => {
-            window.location.href = `/request/${isbn}`;
+          onClick={(event) => {
+            // const data = {}
+            // handleLoanRequest()
+            window.location.href = href;
           }}
         >
           {children}
@@ -32,32 +37,17 @@ function Button({
   }
 }
 
-export default function Card(props: { userBook: UserBook; user: User }) {
-  const getAvailability = (availability: Map<string, boolean>) => {
-    if (Array.from(availability.values()).every((value) => value === true)) {
-      return "Empréstimo ou Troca";
-    } else if (availability.get("trade")) {
-      return "Troca";
-    } else if (availability.get("borrow")) {
-      return "Empréstimo";
-    } else {
-      return "Indisponível";
-    }
-  };
-
+export default function Card({ userBook }: { userBook: any }) {
   return (
     <div className={styles.card}>
       <div className={styles.book_div}>
         <div className={styles.cover_div}>
-          <img
-            src={props.userBook.book.thumbnail}
-            className={styles.thumbnail}
-          />
+          <img src={userBook.book.thumbnail} className={styles.thumbnail} />
         </div>
         <div className={styles.book_info}>
           <div>
-            <h1 className={styles.book_title}>{props.userBook.book.title}</h1>
-            <h2 className={styles.book_author}>{props.userBook.book.author}</h2>
+            <h1 className={styles.book_title}>{userBook.book.title}</h1>
+            <h2 className={styles.book_author}>{userBook.book.author}</h2>
           </div>
           <div className={styles.listas}>
             <ul className={styles.info_label}>
@@ -65,14 +55,15 @@ export default function Card(props: { userBook: UserBook; user: User }) {
               <li>Condição</li>
               <li>Faculdade:</li>
               <li>Solicitações:</li>
-              <li>Status:</li>
             </ul>
             <ul className={styles.info_data}>
-              <li>{getAvailability(props.userBook.avaliability)}</li>
-              <li>{props.userBook.condition}</li>
-              <li>{props.userBook.place}</li>
-              <li>{props.userBook.solicitations} solicitações</li>
-              <li>{props.userBook.status}</li>
+              <li>
+                {getAvailability([userBook.forLoan, userBook.forTrade])}
+              </li>
+              <li>{userBook.condition}</li>
+              <li>{userBook.place}</li>
+              <li>{userBook.user.college}</li>
+              <li>{userBook.solicitations} pedido(s)</li>
             </ul>
           </div>
         </div>
@@ -80,10 +71,10 @@ export default function Card(props: { userBook: UserBook; user: User }) {
 
       <div className={styles.user_div}>
         <div className={styles.user_info}>
-          <img src={props.user.image} alt="" className={styles.user_icon} />
+          <img src={userBook.user.image} alt="" className={styles.user_icon} />
           <div>
-            <h1 className={styles.user_name}>{props.user.name}</h1>
-            <h2 className={styles.user_title}>{props.user.title}</h2>
+            <h1 className={styles.user_name}>{userBook.user.name}</h1>
+            <h2 className={styles.user_title}>{userBook.user.title}</h2>
           </div>
           <div className={styles.score}>
             <img
@@ -91,20 +82,17 @@ export default function Card(props: { userBook: UserBook; user: User }) {
               alt=""
               className={styles.score_icon}
             />
-            <p className={styles.score_value}>{props.user.score}%</p>
+            <p className={styles.score_value}>{userBook.user.score}%</p>
           </div>
         </div>
         <div className={styles.actions}>
           <Button
-            enable={props.userBook.avaliability.get("borrow")}
-            isbn={props.userBook.id}
+            enable={userBook.forLoan}
+            href={`/request/loan/${userBook.id}`}
           >
             Empréstimo
           </Button>
-          <Button
-            enable={props.userBook.avaliability.get("trade")}
-            isbn={props.userBook.id}
-          >
+          <Button enable={userBook.forTrade} href={"#"}>
             Troca
           </Button>
         </div>

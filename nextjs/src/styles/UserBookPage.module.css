@@ -1,0 +1,17 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.requests_div {
+  width: 1350px;
+  margin: 25px;
+  padding: 25px;
+  display: inline-flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  align-items: center;
+  border-radius: 50px;
+  background: #f1f1f1;
+}

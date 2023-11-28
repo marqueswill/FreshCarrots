@@ -1,13 +1,14 @@
 .card {
-  width: 1350px;
+  width: 1200px;
   margin: 25px;
   padding: 25px;
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   border-radius: 50px;
   background: #fff;
+  /* border: 3px #000 solid; */
 }
 
 .cover_div {
@@ -27,10 +28,10 @@
 }
 
 .book_div {
-  width: 40%;
+  width: 50%;
   height: 175px;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
 
   padding: 15px;
 }
@@ -62,7 +63,7 @@
 
 .user_div {
   height: 175px;
-  width: 40%;
+  width: 30%;
   padding: 15px;
   display: flex;
   flex-direction: row;
@@ -86,6 +87,7 @@
   height: 175px;
   border-radius: 50%;
   align-self: center;
+  border: #000 3px solid;
 }
 
 .score {
@@ -145,8 +147,8 @@
   list-style: none;
 }
 
-.actions {
-  width: 20%;
+.actions_div {
+  width: 10%;
   display: flex;
   gap: 50px;
   align-items: center;

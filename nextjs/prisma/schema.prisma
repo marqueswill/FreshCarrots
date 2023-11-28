@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  cpf         String  @unique
+  username    String  @unique
+  name        String
+  email       String  @unique
+  phoneNumber String  @unique
+  image       String?
+  password    String
+  college     String?
+  course      String?
+  title       String?
+  score       Int     @default(0)
+  isAdmin     Boolean @default(false)
+
+  Review   Review[]
+  UserBook UserBook[]
+  Loan     Loan[]
+}
+
+model Book {
+  isbn      String @unique
+  title     String
+  author    String
+  edition   Int
+  year      Int
+  category  String @default("")
+  grade     Int?
+  pages     Int
+  language  String
+  sinopse   String
+  thumbnail String
+
+  Review   Review[]
+  UserBook UserBook[]
+}
+
+model UserBook {
+  id            Int     @id @default(autoincrement())
+  condition     String
+  forLoan       Boolean
+  forTrade      Boolean
+  avaliable     Boolean @default(false)
+  solicitations Int?    @default(0)
+  maxPeriod     Int
+
+  email String
+  isbn  String
+
+  user User   @relation(fields: [email], references: [email])
+  book Book   @relation(fields: [isbn], references: [isbn])
+  Loan Loan[]
+}
+
+model Loan {
+  id     Int     @id @default(autoincrement())
+  period Int
+  status String
+  start  String? //will be set upon confirming the loan
+  end    String?
+
+  lenderBookId  Int
+  borrowerEmail String
+
+  LenderBook UserBook? @relation(fields: [lenderBookId], references: [id])
+  Borrower   User?     @relation(fields: [borrowerEmail], references: [email])
+}
+
+model Review {
+  idReview Int    @unique
+  grade    Int
+  comment  String
+
+  bookIsbn String
+  userCpf  String
+
+  user User @relation(fields: [userCpf], references: [cpf])
+  book Book @relation(fields: [bookIsbn], references: [isbn])
+}
