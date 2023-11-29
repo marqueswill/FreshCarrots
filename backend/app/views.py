@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django_nextjs.render import render_nextjs_page_sync
 from django.contrib.auth.models import User
-from .forms import UserForm, LoginForm
+from .models import UserBook
+from .forms import UserForm, LoginForm, AddBookUserForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -53,3 +54,44 @@ def cadastrar_usuario(request):
             return redirect('login_usuario')
 
     return render(request, 'cadastrar_usuario.html', {'user_form': user_form})
+
+def FetchUserBooks(id_usuario):
+    try:
+        livros_do_usuario = UserBook.objects.filter(idUser=id_usuario)
+
+        return livros_do_usuario
+    except UserBook.DoesNotExist:
+        return None
+
+def addBookUser(request):
+    if request.user.is_authenticated:     
+        if request.method == 'POST':
+            form = AddBookUserForm(request.POST)
+            if form.is_valid():
+                livro = form.save(commit=False)
+                livro.idUser = request.user.id 
+                livro.save()
+                return redirect('pagina_inicial')
+
+def removeBookUser(request):
+    if request.user.is_authenticated and request.method == 'POST':
+        livro_id = request.POST.get('id')
+
+        if not livro_id:
+            return redirect('pagina_inicial')
+
+        try:
+            livro_para_remover = UserBook.objects.get(idUser=request.user.id, id=livro_id)
+        except UserBook.DoesNotExist:
+            return None
+
+
+        livro_para_remover.delete()
+
+    return redirect('pagina_inicial') 
+
+
+            
+
+
+
