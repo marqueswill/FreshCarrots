@@ -1,5 +1,5 @@
 # FreshCarrots
-Na pasta frontend:
+Para executar 
 ```
 npm run dev
 ```
