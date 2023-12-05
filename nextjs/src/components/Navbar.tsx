@@ -4,10 +4,12 @@ import { useState } from "react";
 import SearchBar from "./SearchBar";
 import Notification from "./Notification";
 import SigninButton from "./SigninButton";
+import { useSession } from "next-auth/react";
 
 export default function Navbar() {
   const [loginButton, setLoginButton] = useState(false);
   const [notification, setNotification] = useState(false);
+  const { data: session } = useSession();
 
   return (
     <nav className={styles.nav_div}>
@@ -23,9 +25,21 @@ export default function Navbar() {
       <div className={styles.actions_div}>
         <ul className={styles.actions}>
           <li>
-            <Link href="/book/register" className={styles.link}>
-              Registrar livro
-            </Link>
+            {session && session.user && (
+              <Link href="/book/register" className={styles.link}>
+                Registrar livro
+              </Link>
+            )}
+            {!(session && session.user) && (
+              <p
+                onClick={() => {
+                  alert("Faça login para registrar um livro");
+                }}
+                className={styles.link}
+              >
+                Registrar livro
+              </p>
+            )}
           </li>
           <li>
             <Link href="#" className={styles.link}>
@@ -39,7 +53,7 @@ export default function Navbar() {
             <Notification state={notification} />
           </li>
           <li>
-            <SigninButton/>
+            <SigninButton />
           </li>
         </ul>
       </div>

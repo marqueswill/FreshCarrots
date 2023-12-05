@@ -95,7 +95,7 @@ export default async function handler(
         if (loanRequest) {
           const userBook = await prisma.userBook.update({
             where: { id: loanRequest.lenderBookId },
-            data: { solicitations: { decrement: 1 } },
+            data: { solicitations: { decrement: 1 }, avaliable: false },
           });
           res
             .status(200)

@@ -27,13 +27,13 @@ export default function UserShelf({ shelf }: { shelf: any }) {
             <td className={styles.column4}>Condição</td>
             <td className={styles.column5}>Nº Pedidos</td>
             <td className={styles.column6}>
-              <button className={styles.button}>
+              {/* <button className={styles.button}>
                 <img
                   src="/images/icons/remove.png"
                   alt="remove"
                   className={styles.action}
                 />
-              </button>
+              </button> */}
             </td>
           </tr>
 
@@ -62,7 +62,7 @@ export default function UserShelf({ shelf }: { shelf: any }) {
                       }}
                     />
                   </button>
-                  <button className={styles.button}>
+                  {/* <button className={styles.button}>
                     <img
                       src="/images/icons/edit.png"
                       alt="edit"
@@ -71,8 +71,8 @@ export default function UserShelf({ shelf }: { shelf: any }) {
                       //   window.location.href = `/user/profile/${userBook.user.email}/userbook/${userBook.book.isbn}`;
                       // }}
                     />
-                  </button>
-                  <button className={styles.button}>
+                  </button> */}
+                  {/* <button className={styles.button}>
                     <img
                       src="/images/icons/remove.png"
                       alt="remove"
@@ -81,7 +81,7 @@ export default function UserShelf({ shelf }: { shelf: any }) {
                         deleteUserBook;
                       }}
                     />
-                  </button>
+                  </button> */}
                 </td>
               </tr>
             );

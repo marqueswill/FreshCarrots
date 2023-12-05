@@ -15,7 +15,7 @@ export const handleRegister = async (props: {
 }) => {
   console.log(props);
   
-  const res = await fetch(`http://localhost:8000/api/book/register`, {
+  const res = await fetch(`/api/book/register`, {
     method: "POST",
     body: JSON.stringify({
       isbn: props.isbn,
