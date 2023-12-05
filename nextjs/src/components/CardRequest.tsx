@@ -1,10 +1,7 @@
 import { getAvailability } from "@/lib/userBook";
 import {} from "@/pages/_app";
 import styles from "@/styles/CardRequest.module.css";
-
-function handleLoanRequest(){}
-function handleTradeRequest(){}
-
+import { useSession } from "next-auth/react";
 
 function Button({
   children,
@@ -16,16 +13,16 @@ function Button({
   enable?: boolean;
   href: string;
 }) {
+  const { data: session } = useSession();
+
   if (enable != undefined) {
     if (enable) {
       return (
-        // <Link href={`/request/${isbn}`}>
         <button
           className={styles.button_true}
           onClick={(event) => {
-            // const data = {}
-            // handleLoanRequest()
-            window.location.href = href;
+            if (session && session.user) window.location.href = href;
+            else alert("Faça login para realizar empréstimo/troca");
           }}
         >
           {children}
@@ -57,9 +54,7 @@ export default function Card({ userBook }: { userBook: any }) {
               <li>Solicitações:</li>
             </ul>
             <ul className={styles.info_data}>
-              <li>
-                {getAvailability([userBook.forLoan, userBook.forTrade])}
-              </li>
+              <li>{getAvailability([userBook.forLoan, userBook.forTrade])}</li>
               <li>{userBook.condition}</li>
               <li>{userBook.place}</li>
               <li>{userBook.user.college}</li>

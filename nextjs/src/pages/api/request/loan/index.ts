@@ -7,6 +7,34 @@ export default async function handler(
   res: NextApiResponse
 ) {
   switch (req.method) {
+    case "GET": {
+      try {
+        const existingLoan = await prisma.loan.findMany({
+          where: {
+            borrowerEmail: req.body.borrowerEmail,
+            status: "Pendente",
+          },
+        });
+
+        if (existingLoan) {
+          res
+            .status(200)
+            // .json({message: JSON.stringify(existingLoan)})
+            .json({ message: "Pedido de empréstimo realizado com sucesso." });
+        } else {
+          res
+            .status(400)
+            .json({ message: "Você já realizou requisão desse exemplar." });
+        }
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({
+          error: JSON.stringify(req.body),
+        });
+      }
+      break;
+    }
+
     case "POST": {
       try {
         const existingLoan = await prisma.loan.findMany({
@@ -67,8 +95,8 @@ export default async function handler(
         if (loanRequest) {
           const userBook = await prisma.userBook.update({
             where: { id: loanRequest.lenderBookId },
-            data: { solicitations: { decrement: 1 } },
-          }); 
+            data: { solicitations: { decrement: 1 }, avaliable: false },
+          });
           res
             .status(200)
             .json({ message: "Pedido de empréstimo realizado com sucesso." });

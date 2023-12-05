@@ -35,7 +35,6 @@ async function seed() {
   const languageList = [
     "Português",
     "Português",
-
     "Português",
     "Português",
     "Português",
@@ -61,22 +60,6 @@ async function seed() {
     "https://m.media-amazon.com/images/I/41IRFCLk-kL._SY445_SX342_.jpg",
   ];
 
-  await prisma.user.create({
-    data: {
-      cpf: "08960522175",
-      email: "willyanmarquesmelo@gmail.com",
-      isAdmin: true,
-      name: "Willyan",
-      password: "123456",
-      phoneNumber: "123456",
-      username: "warmelw",
-      college: "UnB",
-      course: "Engenharia da Computação",
-      image:
-        "https://lh3.googleusercontent.com/a/ACg8ocIfPM3yLTHd18a0OrXct4XsPhGr1ZTD-Yu_78bRhm4NI4J7=s96-c",
-    },
-  });
-
   for (let i = 0; i < isbnList.length; i++) {
     await prisma.book.create({
       data: {
@@ -93,6 +76,22 @@ async function seed() {
       },
     });
   }
+
+  await prisma.user.create({
+    data: {
+      cpf: "08960522175",
+      email: "willyanmarquesmelo@gmail.com",
+      isAdmin: true,
+      name: "Willyan",
+      password: "123456",
+      phoneNumber: "123456",
+      username: "warmelw",
+      college: "UnB",
+      course: "Engenharia da Computação",
+      image:
+        "https://lh3.googleusercontent.com/a/ACg8ocIfPM3yLTHd18a0OrXct4XsPhGr1ZTD-Yu_78bRhm4NI4J7=s96-c",
+    },
+  });
 
   await prisma.userBook.create({
     data: {

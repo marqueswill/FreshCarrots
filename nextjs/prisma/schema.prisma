@@ -53,7 +53,7 @@ model UserBook {
   forTrade      Boolean
   avaliable     Boolean @default(false)
   solicitations Int?    @default(0)
-  maxPeriod     Int
+  maxPeriod     Int     @default(0)
 
   email String
   isbn  String
@@ -78,9 +78,9 @@ model Loan {
 }
 
 model Review {
-  idReview Int    @unique
-  grade    Int
-  comment  String
+  id      Int    @unique
+  grade   Int
+  comment String
 
   bookIsbn String
   userCpf  String

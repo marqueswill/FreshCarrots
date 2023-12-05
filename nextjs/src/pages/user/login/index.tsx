@@ -25,7 +25,7 @@ export default function LoginPage() {
             />
           </span>
           {/* <span>Continuar com o google</span> */}
-          <a href="/register" className={styles.a}>
+          <a href="/user/register" className={styles.a}>
             Não tenho conta
           </a>
           <button className={styles.button} onClick={handleLogin}>

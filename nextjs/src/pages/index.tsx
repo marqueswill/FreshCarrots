@@ -7,9 +7,11 @@ import router, { useRouter } from "next/router";
 export const getServerSideProps: GetServerSideProps<{
   categoria: any;
 }> = async (context) => {
+  
   const categoria = await prisma.book.findMany({
     where: { category: "Engenharias e Tecnologia" },
   });
+
   return { props: { categoria } };
 };
 
